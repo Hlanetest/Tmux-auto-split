@@ -1,0 +1,196 @@
+#!/bin/bash
+echo "=================="
+echo "==Tmux.autosplit=="
+echo "=================="
+echo "version 2.0"
+echo "developed by Hlane"
+
+SERVER_TEST(){
+#primarily used for connecting to certain servers, in other regions, and then splitting it up into other sessions. 
+    if [ -v ${USERNAME} ]; then
+        clear
+        echo "What Region is this?" 
+        echo "us"
+        echo "emea"
+        echo "FRA"
+        echo "CA"
+        echo "exit"
+        read Region
+        for i in $Region ; do 
+            if [ $i == "us" ] ; then 
+                tmux new-session \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com C-m \; \
+                split-window -v \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com C-m \; \
+                split-window -h \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com C-m \; \
+                split-window -v \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com C-m \; \
+                set-option -w synchronize-panes on \;
+        
+            elif [ $i == "emea" ] ; then 
+                tmux new-session \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com' C-m \; \
+                split-window -v \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com' C-m \; \
+                split-window -h \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com' C-m \; \
+                split-window -v \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com' C-m \; \
+                set-option -w synchronize-panes on \;
+
+            elif [ $i == "FRA" ] ; then 
+                tmux new-session \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com' C-m \; \
+                split-window -v \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com' C-m \; \
+                split-window -h \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com' C-m \; \
+                split-window -v \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com' C-m \; \
+                set-option -w synchronize-panes on \;
+
+            elif [ $i =="CA" ] ; then 
+                tmux new-session \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com' C-m \; \
+                split-window -v \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com' C-m \; \
+                split-window -h \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com' C-m \; \
+                split-window -v \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com' C-m \; \
+                set-option -w synchronize-panes on \;
+
+            elif [ $i == "exit" ] ; then 
+                exit 0
+            else 
+                exit 1 
+            fi
+        done
+    
+    elif [ -v ${USER} ]; then
+    #The reason I specified $USER is because some linux distros may not have $USERNAME (atleast in my experience, from others I've looked at) so to  alliviate this issue, I simply added in the additional if statement to check if either exists.
+        clear
+        echo "What Region is this?" 
+        echo "us"
+        echo "emea"
+        echo "FRA"
+        echo "CA"
+        echo "exit"
+        read Region
+        for i in $Region ; do 
+            if [ $i == "us" ] ; then 
+                tmux new-session \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com C-m \; \
+                split-window -v \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com C-m \; \
+                split-window -h \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com C-m \; \
+                split-window -v \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com C-m \; \
+                set-option -w synchronize-panes on \;
+        
+            elif [ $i == "emea" ] ; then 
+                tmux new-session \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com' C-m \; \
+                split-window -v \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com' C-m \; \
+                split-window -h \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com' C-m \; \
+                split-window -v \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com' C-m \; \
+                set-option -w synchronize-panes on \;
+
+            elif [ $i == "FRA" ] ; then 
+                tmux new-session \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com' C-m \; \
+                split-window -v \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com' C-m \; \
+                split-window -h \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com' C-m \; \
+                split-window -v \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com' C-m \; \
+                set-option -w synchronize-panes on \;
+
+            elif [ $i =="CA" ] ; then 
+                tmux new-session \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com' C-m \; \
+                split-window -v \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com' C-m \; \
+                split-window -h \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com' C-m \; \
+                split-window -v \; \
+                send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com' C-m \; \
+                set-option -w synchronize-panes on \;
+
+            elif [ $i == "exit" ] ; then 
+                exit 0
+            else 
+                exit 1 
+            fi
+        else
+            echo "No variable named $User or $USERNAME, please specify" # this is tentative atm. 
+        done
+    fi
+
+}
+WEB_LOG(){
+    # Tmux connectors for a webserver, incase you need to determine what is happening on a webserver. 
+    if [ -v ${USERNAME} ]; then
+        tmux new-session \; \
+        send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com' C-m \; \
+        split-window -v \; \
+        send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com' C-m \; \
+        split-window -h \; \
+        send-keys 'sudo ssh -i "$IDPATH" '$USERNAME'@SomesiteURL.com' -C-m \; \
+        set-option -w synchronize-panes on \;
+    else [ -v ${USER} ];
+        tmux new-session \; \
+        send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com' C-m \; \
+        split-window -v \; \
+        send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com' C-m \; \
+        split-window -h \; \
+        send-keys 'sudo ssh -i "$IDPATH" '$USER'@SomesiteURL.com' -C-m \; \
+        set-option -w synchronize-panes on \;
+    fi
+}
+PC_STATS(){
+    #Basic sessions for normal monitoring.
+    tmux new-session \; \
+    send-keys 'top -o MEM'
+    split-window -v \; \
+    send-keys 'df -h'
+    split-window -h \; \
+    send-keys 'free -m' \; \
+}
+
+main_function(){
+    #this first checks if the variable IDPATH is usable, if not, it'll have you add it in! this is needed if your logins require an RSA KEY.
+    if [ -v ${IDPATH} ]; then
+        echo "Variable IDPATH does not exist" 
+        echo "The IDPATH is the path to your RSA key location."
+        echo "please specify your key-location!"
+        read PATHKEY
+        echo export IDPATH=$PATHKEY >> ~/.bashrc
+        source ~/.bashrc
+        bold=$(tput bold)
+        normal=$(tput sgr0)
+        echo "please do ${bold}'source ~/.bashrc' ${normal} In order for this script to work! This will only need to be ran once!"
+    else
+        echo "IDPATH variable is found, proceeding as normal."
+        echo "What list of servers would you like to connect to?"
+        echo "SERVER-Test"
+        echo "Web"
+        read SERVERCHOICE
+        for i in $SERVERCHOICE ; do 
+            if [ $i == "SERVER-Test" ] ; then
+                SERVER_TEST
+            elif [ $i == "Web" ] ; then
+                WEB_LOG
+            else 
+                exit 1
+            fi 
+        done
+    fi
+}
+main_function
